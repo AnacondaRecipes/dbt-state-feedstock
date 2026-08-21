@@ -1,17 +1,17 @@
-From 9f54b0d35d8003111527c7d209d8d5e01a8e7459 Mon Sep 17 00:00:00 2001
+From 2124046e1e322d5a47ad9b4ce7ba510bd409435f Mon Sep 17 00:00:00 2001
 From: Andrii Osipov <aosipov@anaconda.com>
 Date: Fri, 21 Aug 2026 00:54:22 -0700
 Subject: [PATCH] fix pyproject file
 
 ---
- pyproject.toml | 14 ++------------
- 1 file changed, 2 insertions(+), 12 deletions(-)
+ pyproject.toml | 24 ++++++------------------
+ 1 file changed, 6 insertions(+), 18 deletions(-)
 
 diff --git a/pyproject.toml b/pyproject.toml
-index 9bba392..944a73b 100644
+index 9bba392..d505e60 100644
 --- a/pyproject.toml
 +++ b/pyproject.toml
-@@ -1,16 +1,15 @@
+@@ -1,16 +1,10 @@
  [project]
  name = "dbt-state"
 -dynamic = ["version", "dependencies"]
@@ -21,16 +21,22 @@ index 9bba392..944a73b 100644
 -license = {file = "../../LICENSE"}
 +license = "Apache-2.0"
  requires-python = ">=3.9.0"
- 
- [project.urls]
- Homepage = "https://state.dbt.com"
- 
- [tool.hatch.metadata.hooks.custom]
+-
+-[project.urls]
+-Homepage = "https://state.dbt.com"
+-
+-[tool.hatch.metadata.hooks.custom]
 -path = "../../tooling/versions.py"
  dependencies = [
      "aenum",
      "authlib",
-@@ -33,15 +32,6 @@ dependencies = [
+@@ -30,18 +24,12 @@ dependencies = [
+     "typing_extensions>=4.6.0",
+ ]
+ 
++[project.urls]
++Homepage = "https://state.dbt.com"
++
  [project.scripts]
  dbt-state = "dbt_state.cli.main:cli"
  
@@ -46,6 +52,13 @@ index 9bba392..944a73b 100644
  [tool.hatch.build.targets.wheel]
  packages = ["src/dbt_state"]
  include = [
+@@ -53,4 +41,4 @@ query_cache_protobuf = { workspace = true }
+ 
+ [build-system]
+ requires = ["hatchling"]
+-build-backend = "hatchling.build"
++build-backend = "hatchling.build"
+\ No newline at end of file
 -- 
 2.39.5 (Apple Git-154)
 
