@@ -1,0 +1,62 @@
+{% set name = "dbt-state" %}
+{% set version = "2.44.4" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: 6ebbd920f7c23470aa5907cf34ceef74fba997456b8de5e47534b139e9cb4e8d
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  skip: true  # [py<39]
+
+requirements:
+  host:
+    - pip
+    - python
+    - hatchling
+  run:
+    - python
+    - aenum
+    - authlib
+    - click >=8.0.0
+    - dacite
+    - dbt-core >=1.6.0
+    - grpcio >=1.60.0
+    - requests
+    - humanize
+    - protobuf>=4.0.0
+    - pytimeparse2
+    - query-cache-protobuf
+    - query-cache-common
+    - rich
+    - pyyaml
+    - sqlglot >=27.6.1
+    - typing_extensions >=4.6.0
+
+test:
+  imports:
+    - dbt_state
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://www.getdbt.com/product/dbt-state
+  summary: dbt enables data analysts and engineers to transform their data using the same practices that software engineers use to build applications.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: PKG-INFO
+  description: |
+    dbt enables data analysts and engineers to transform their data using the same practices that software engineers use to build applications.
+  doc_url: https://pypi.org/project/dbt-state
+  dev_url: https://pypi.org/project/dbt-state
+
+extra:
+  recipe-maintainers:
+    - Andrii-Osipov
