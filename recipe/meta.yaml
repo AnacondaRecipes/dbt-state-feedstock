@@ -16,7 +16,8 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - dbt-state = dbt_state.cli.main:cli
-  skip: true  # [py<39]
+  # No dbt-core for Python 3.13+
+  skip: true  # [py<39 or py>313]
 
 requirements:
   host:
