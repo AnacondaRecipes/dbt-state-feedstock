@@ -1,0 +1,64 @@
+From 2124046e1e322d5a47ad9b4ce7ba510bd409435f Mon Sep 17 00:00:00 2001
+From: Andrii Osipov <aosipov@anaconda.com>
+Date: Fri, 21 Aug 2026 00:54:22 -0700
+Subject: [PATCH] fix pyproject file
+
+---
+ pyproject.toml | 24 ++++++------------------
+ 1 file changed, 6 insertions(+), 18 deletions(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 9bba392..d505e60 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,16 +1,10 @@
+ [project]
+ name = "dbt-state"
+-dynamic = ["version", "dependencies"]
++version = "2.44.4"
+ description = "dbt plugin that skips redundant model executions by caching results from previous runs"
+ readme = {text = "dbt plugin that skips redundant model executions by caching results from previous runs. Learn more at [state.dbt.com](https://state.dbt.com).", content-type = "text/markdown"}
+-license = {file = "../../LICENSE"}
++license = "Apache-2.0"
+ requires-python = ">=3.9.0"
+-
+-[project.urls]
+-Homepage = "https://state.dbt.com"
+-
+-[tool.hatch.metadata.hooks.custom]
+-path = "../../tooling/versions.py"
+ dependencies = [
+     "aenum",
+     "authlib",
+@@ -30,18 +24,12 @@ dependencies = [
+     "typing_extensions>=4.6.0",
+ ]
+ 
++[project.urls]
++Homepage = "https://state.dbt.com"
++
+ [project.scripts]
+ dbt-state = "dbt_state.cli.main:cli"
+ 
+-[tool.hatch.build.hooks.custom]
+-path = "../../tooling/versions.py"
+-version_file = "src/dbt_state/_version.py"
+-
+-[tool.hatch.version]
+-source = "code"
+-path = "../../tooling/versions.py"
+-expression = "VERSIONS['dbt-state']"
+-
+ [tool.hatch.build.targets.wheel]
+ packages = ["src/dbt_state"]
+ include = [
+@@ -53,4 +41,4 @@ query_cache_protobuf = { workspace = true }
+ 
+ [build-system]
+ requires = ["hatchling"]
+-build-backend = "hatchling.build"
++build-backend = "hatchling.build"
+\ No newline at end of file
+-- 
+2.39.5 (Apple Git-154)
+
